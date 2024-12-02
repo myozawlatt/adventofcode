@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "AOC.Runner": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
