@@ -5,7 +5,7 @@ internal class Day2 : IPuzzleSolver
 {
     public object SolvePart1(string[] inputLines)
         => ParseReports(inputLines)
-            .Count(Rule);   
+            .Count(Rule);
     public object SolvePart2(string[] inputLines)
         => ParseReports(inputLines)
             .Count(r => MakePossibilities(r).Any(Rule));

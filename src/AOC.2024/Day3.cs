@@ -1,6 +1,4 @@
-﻿using System.Text.RegularExpressions;
-
-namespace AOC._2024;
+﻿namespace AOC._2024;
 
 [Puzzle(3, 2024, "Mull It Over")]
 public class Day3 : IPuzzleSolver
