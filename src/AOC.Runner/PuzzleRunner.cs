@@ -34,7 +34,7 @@ public class PuzzleRunner
     public static void RunPuzzle(int day, int year)
     {
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
-            ?? throw new Exception("Puzzle not found.");
+            ?? throw new Exception("Puzzle does not found.");
 
         var inputPath = @$"inputs\{puzzle.Year}\day{puzzle.Day}.txt";
         if (!File.Exists(inputPath))
