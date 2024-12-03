@@ -3,7 +3,7 @@ using Spectre.Console;
 
 try
 {
-    PuzzleRunner.RunPuzzle(2, 2024);
+    PuzzleRunner.RunPuzzle(3, 2024);
 }
 catch (Exception ex)
 {

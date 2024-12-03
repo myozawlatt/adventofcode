@@ -1,4 +1,5 @@
 ﻿namespace AOC._2024;
+
 [Puzzle(2, 2024, "Red-Nosed Reports")]
 internal class Day2 : IPuzzleSolver
 {
@@ -21,11 +22,7 @@ internal class Day2 : IPuzzleSolver
             .ToList();
     static List<List<int>> MakePossibilities(List<int> report)
     {
-        var root = new List<List<int>>
-        {
-            report
-        };
-
+        var root = new List<List<int>>();
         for (int i = 0; i < report.Count; i++)
             root.Add(report.Where((_, index) => index != i).ToList());
 
