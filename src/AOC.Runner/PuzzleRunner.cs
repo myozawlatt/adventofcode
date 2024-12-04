@@ -8,19 +8,19 @@ public class PuzzleRunner
     record PuzzleInfo(int Day, int Year, string Name, IPuzzleSolver Solver);
 
     private static readonly List<PuzzleInfo> puzzles24 =
-        Assembly.GetAssembly(typeof(_2024.Day1))!
+        Assembly.GetAssembly(typeof(_2024.Day01))!
         .GetTypes()
         .Select(x => new
         {
-            Type = x,
-            Attribute = x.GetCustomAttribute<PuzzleAttribute>()!
+            PuzzleType = x,
+            Attr = x.GetCustomAttribute<PuzzleAttribute>()!
         })
-        .Where(x => x.Attribute != null)
+        .Where(x => x.Attr != null)
         .Select(x => new PuzzleInfo(
-            x.Attribute.Day,
-            x.Attribute.Year,
-            x.Attribute.Name,
-            (IPuzzleSolver)Activator.CreateInstance(x.Type)!))
+            x.Attr.Day,
+            x.Attr.Year,
+            x.Attr.Name,
+            (IPuzzleSolver)Activator.CreateInstance(x.PuzzleType)!))
         .ToList();
 
     static readonly string InputPathNotFoundError =

@@ -1,7 +1,7 @@
 ﻿namespace AOC._2024;
 
 [Puzzle(3, 2024, "Mull It Over")]
-public class Day3 : IPuzzleSolver
+public class Day03 : IPuzzleSolver
 {
     public object SolvePart1(string[] inputLines)
     {

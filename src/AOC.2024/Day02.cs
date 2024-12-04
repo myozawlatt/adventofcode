@@ -1,7 +1,7 @@
 ﻿namespace AOC._2024;
 
 [Puzzle(2, 2024, "Red-Nosed Reports")]
-internal class Day2 : IPuzzleSolver
+internal class Day02 : IPuzzleSolver
 {
     public object SolvePart1(string[] inputLines)
         => ParseReports(inputLines)
