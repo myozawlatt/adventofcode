@@ -28,8 +28,8 @@ internal class Day02 : IPuzzleSolver
 
         return root;
     }
-    record Pair(int First, int Second);
 
+    record Pair(int First, int Second);
     static int SimpleSolvingPart1(List<List<int>> reports)
     {
         int safeReports = 0;
@@ -46,7 +46,6 @@ internal class Day02 : IPuzzleSolver
         }
         return safeReports;
     }
-
     static bool ValidateRule(List<Pair> pairs)
     {
         bool
@@ -70,7 +69,6 @@ internal class Day02 : IPuzzleSolver
 
         return increasing || decreasing;
     }
-
     static int SimpleSovlingPart2(List<List<int>> reports)
     {
         int safeReports = 0;
