@@ -26,7 +26,7 @@ public class PuzzleRunner
     static readonly string InputPathNotFoundError =
         """
             Input file does not found.
-            Please create your input like this:
+            Please create your input like this (day in '00' format like day01.txt -> day25.txt) :
             inputs/
             ├── {year}/
             │   ├── {day}.txt
@@ -36,7 +36,7 @@ public class PuzzleRunner
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
             ?? throw new Exception("Puzzle does not found.");
 
-        var inputPath = @$"inputs\{puzzle.Year}\day{puzzle.Day}.txt";
+        var inputPath = @$"inputs\{puzzle.Year}\day{puzzle.Day:00}.txt";
         if (!File.Exists(inputPath))
             throw new Exception(InputPathNotFoundError);
 

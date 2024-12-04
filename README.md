@@ -1,4 +1,4 @@
-# Advent Of Code puzzle solution
+# Advent Of Code puzzle solutions
 
 
 
@@ -12,7 +12,8 @@ Example:
 ```md
  inputs/
  ├── 2024/
- │   ├── day1.txt
+     ├── day01.txt   
+     ├── day25.txt
 ```
 
 I used [Spectre Console](https://spectreconsole.net/) to markup puzzle outputs.
