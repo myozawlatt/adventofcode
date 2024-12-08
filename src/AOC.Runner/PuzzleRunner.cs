@@ -3,6 +3,11 @@ using System.Diagnostics;
 using System.Reflection;
 
 namespace AOC.Runner;
+internal enum InputMode
+{
+    Sample,
+    Actual
+}
 public class PuzzleRunner
 {
     record PuzzleInfo(int Day, int Year, string Name, IPuzzleSolver Solver);
@@ -31,12 +36,16 @@ public class PuzzleRunner
             ├── {year}/
             │   ├── {day}.txt
             """;
-    public static void RunPuzzle(int day, int year)
+    internal static void RunPuzzle(int day, int year, InputMode mode = InputMode.Actual)
     {
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
             ?? throw new Exception("Puzzle does not found.");
 
-        var inputPath = @$"inputs\{puzzle.Year}\day{puzzle.Day:00}.txt";
+        var inputFileName = $"day{puzzle.Day:00}";
+        if (mode == InputMode.Sample)
+            inputFileName = $"day{puzzle.Day:00}.sample";
+
+        var inputPath = @$"inputs\{puzzle.Year}\{inputFileName}.txt";
         if (!File.Exists(inputPath))
             throw new Exception(InputPathNotFoundError);
 
