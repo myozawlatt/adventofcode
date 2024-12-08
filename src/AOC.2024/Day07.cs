@@ -22,30 +22,29 @@ internal class Day07 : IPuzzleSolver
         }).ToDictionary();
 
     static bool IsAvalidEquation(
-        long carlibration, 
+        long carlibration,
         long[] testValues,
         bool isConcated = false)
     {
         List<long> possibilities = [];
         long primary = testValues[0];
         var nexts = testValues[1..];
-        possibilities = GeneratePossibilities(primary, nexts, possibilities, isConcated);
+        GeneratePossibilities(primary, nexts, possibilities, isConcated);
         return possibilities.Contains(carlibration);
     }
-    static List<long> GeneratePossibilities(
-        long primary, 
-        long[] nexts, 
-        List<long> possibilities, 
+    static void GeneratePossibilities(
+        long primary,
+        long[] nexts,
+        List<long> possibilities,
         bool isConcated)
     {
         possibilities.Add(primary);
         if (nexts.Length > 0) //break recursive
         {
             if (isConcated)
-                GeneratePossibilities(long.Parse($"{primary}{nexts[0]}"), nexts[1..], possibilities,isConcated); //add concernation for each
+                GeneratePossibilities(long.Parse($"{primary}{nexts[0]}"), nexts[1..], possibilities, isConcated); //add concernation for each
             GeneratePossibilities(primary + nexts[0], nexts[1..], possibilities, isConcated);
             GeneratePossibilities(primary * nexts[0], nexts[1..], possibilities, isConcated);
         }
-        return possibilities;
     }
 }
