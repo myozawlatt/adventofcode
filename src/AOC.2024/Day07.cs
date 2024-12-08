@@ -21,7 +21,10 @@ internal class Day07 : IPuzzleSolver
             return new KeyValuePair<long, long[]>(splitions.First(), splitions.Skip(1).ToArray());
         }).ToDictionary();
 
-    static bool IsAvalidEquation(long carlibration, long[] testValues, bool isConcated = false)
+    static bool IsAvalidEquation(
+        long carlibration, 
+        long[] testValues,
+        bool isConcated = false)
     {
         List<long> possibilities = [];
         long primary = testValues[0];
@@ -29,7 +32,11 @@ internal class Day07 : IPuzzleSolver
         possibilities = GeneratePossibilities(primary, nexts, possibilities, isConcated);
         return possibilities.Contains(carlibration);
     }
-    static List<long> GeneratePossibilities(long primary, long[] nexts, List<long> possibilities, bool isConcated)
+    static List<long> GeneratePossibilities(
+        long primary, 
+        long[] nexts, 
+        List<long> possibilities, 
+        bool isConcated)
     {
         possibilities.Add(primary);
         if (nexts.Length > 0) //break recursive
