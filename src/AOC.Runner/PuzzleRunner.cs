@@ -43,7 +43,7 @@ public class PuzzleRunner
 
         var inputFileName = $"day{puzzle.Day:00}";
         if (mode == InputMode.Sample)
-            inputFileName = $"day{puzzle.Day:00}.sample";
+            inputFileName += ".sample";
 
         var inputPath = @$"inputs\{puzzle.Year}\{inputFileName}.txt";
         if (!File.Exists(inputPath))
