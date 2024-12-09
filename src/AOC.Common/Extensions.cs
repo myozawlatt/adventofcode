@@ -12,7 +12,7 @@ public static class Extensions
 
         return map;
     }
-    public static Point Add(this Point a, Point b)
+    public static Point Sum(this Point a, Point b)
         => new(a.X + b.X, a.Y + b.Y);
     public static Point Diff(this Point a, Point b)
         => new(a.X - b.X, a.Y - b.Y);

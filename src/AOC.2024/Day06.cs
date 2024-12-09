@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace AOC._2024;
+﻿namespace AOC._2024;
 
 [Puzzle(6, 2024, "Guard Gallivant")]
 internal class Day06 : IPuzzleSolver
@@ -32,12 +30,9 @@ internal class Day06 : IPuzzleSolver
     }
     static (Dictionary<Point, char> map, Point guard) ParseInputs(string[] inputLines)
     {
-        Dictionary<Point, char> map = [];
-        for (int i = 0; i < inputLines.Length; i++)
-            for (int j = 0; j < inputLines[i].Length; j++)
-                map.Add(new(i, j), inputLines[i][j]);
-
+        var map = inputLines.CreateMap();
         var guard = map.First(x => x.Value == '^').Key;
+
         return (map, guard);
     }
     static (List<Point> steps, bool loopFound) Move(
@@ -59,7 +54,7 @@ internal class Day06 : IPuzzleSolver
                 break;
             }
 
-            Point next = new(step.X + dir.X, step.Y + dir.Y);
+            Point next = step.Sum(dir);
             if (!map.TryGetValue(next, out var x))
                 break; //guard exit
 

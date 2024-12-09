@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace AOC._2024;
+﻿namespace AOC._2024;
 
 [Puzzle(8, 2024, "Resonant Collinearity")]
 internal class Day08 : IPuzzleSolver
@@ -19,7 +17,7 @@ internal class Day08 : IPuzzleSolver
                 {
                     var distance = next.Diff(current);
                     antinodes.Add(current.Diff(distance));
-                    antinodes.Add(next.Add(distance));
+                    antinodes.Add(next.Sum(distance));
                 }
             }
         }
@@ -45,16 +43,16 @@ internal class Day08 : IPuzzleSolver
                     while (map.ContainsKey(antinode))
                     {
                         antinodes.Add(antinode);
-                        antinode = antinode.Add(distance);
+                        antinode = antinode.Sum(distance);
                     }
 
-                    //backword
+                    //backward
                     antinode = current;
                     distance = current.Diff(next);
                     while (map.ContainsKey(antinode))
                     {
                         antinodes.Add(antinode);
-                        antinode = antinode.Add(distance);
+                        antinode = antinode.Sum(distance);
                     }
                 }
             }
@@ -64,7 +62,7 @@ internal class Day08 : IPuzzleSolver
             antinodes.Count;
     }
 
-    static (List<Point[]> antennaLocations, Dictionary<Point, char> map) ParseInputs(string[] inputLines)
+    static (List<Point[]> antennaLocationGroups, Dictionary<Point, char> map) ParseInputs(string[] inputLines)
     {
         var map = inputLines.CreateMap();
 

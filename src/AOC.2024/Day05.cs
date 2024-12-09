@@ -16,9 +16,9 @@ internal class Day05 : IPuzzleSolver
         var (rules, updates) = ParseInputs(inputLines);
         var cm = Comparer<int>.Create((left, righ) => rules.Any(rule => rule.Contains(left) && rule[0] == righ) ? 1 : -1);
 
-        return 
+        return
             updates.Where(x => !IsValidUpdate(x, rules))
-            .Select(x=> x.OrderBy(x => x, cm).ToArray())
+            .Select(x => x.OrderBy(x => x, cm).ToArray())
             .Sum(x => x[x.Length / 2]);
 
     }
