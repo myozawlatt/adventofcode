@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 
+using SpectreColor = Spectre.Console.Color;
 namespace AOC.Runner;
 internal enum InputMode
 {
@@ -31,10 +32,10 @@ public class PuzzleRunner
     static readonly string InputPathNotFoundError =
         """
             Input file does not found.
-            Please create your input like this (day in '00' format like day01.txt -> day25.txt) :
+            Please create inputs folder in Runner and place your input like this :
             inputs/
-            ├── {year}/
-            │   ├── {day}.txt
+            ├── {0}/
+            │   ├── {1}.txt
             """;
     internal static void RunPuzzle(int day, int year, InputMode mode = InputMode.Actual)
     {
@@ -47,22 +48,35 @@ public class PuzzleRunner
 
         var inputPath = @$"inputs\{puzzle.Year}\{inputFileName}.txt";
         if (!File.Exists(inputPath))
-            throw new Exception(InputPathNotFoundError);
+            throw new Exception(string.Format(InputPathNotFoundError, year, inputFileName));
 
+        PrintTitle();
         var inputs = File.ReadAllLines(inputPath);
 
-        var sw = Stopwatch.StartNew();
-        var part1 = puzzle.Solver.SolvePart1(inputs);
-        sw.Stop();
-        var part1Elapsed = sw.Elapsed;
+        object part1 = null!, part2 = null!;
+        TimeSpan part1Elapsed = TimeSpan.Zero, part2Elapsed = TimeSpan.Zero;
 
-        sw.Restart();
-        var part2 = puzzle.Solver.SolvePart2(inputs);
-        sw.Stop();
-        var part2Elapsed = sw.Elapsed;
+        AnsiConsole.Status()
+            .Spinner(Spinner.Known.Christmas)
+            .SpinnerStyle(Style.Parse("bold cornflowerblue"))
+            .Start("Hold up, I'm solving..", ctx =>
+            {
+                var sw = Stopwatch.StartNew();
+                part1 = puzzle.Solver.SolvePart1(inputs);
+                sw.Stop();
+                part1Elapsed = sw.Elapsed;
 
-        AnsiConsole.MarkupLine($"[bold aquamarine1]{puzzle.Year}[/], [bold aquamarine1]Day {puzzle.Day}[/] : [bold olive]{puzzle.Name}[/] \n");
+                sw.Restart();
+                part2 = puzzle.Solver.SolvePart2(inputs);
+                sw.Stop();
+                part2Elapsed = sw.Elapsed;
+
+            });
+
         AnsiConsole.MarkupLine($"Part 1: {part1}    [green]({part1Elapsed.TotalMilliseconds} ms)[/]");
         AnsiConsole.MarkupLine($"Part 2: {part2}    [green]({part2Elapsed.TotalMilliseconds} ms)[/] \n");
+
+        void PrintTitle()
+            => AnsiConsole.MarkupLine($"[bold aquamarine1]{puzzle.Year}[/], [bold aquamarine1]Day {puzzle.Day}[/] : [bold olive]{puzzle.Name}[/] \n");
     }
 }
