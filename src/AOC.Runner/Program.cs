@@ -9,7 +9,7 @@ start:
 Console.Clear();
 try
 {
-    PuzzleRunner.RunPuzzle(10, 2024, InputMode.Actual);
+    PuzzleRunner.RunPuzzle(11, 2024, InputMode.Actual);
 
     if (AnsiConsole.Confirm("Run again?"))
         goto start;
