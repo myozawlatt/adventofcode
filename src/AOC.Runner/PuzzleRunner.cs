@@ -28,27 +28,22 @@ public class PuzzleRunner
             x.Attr.Name,
             (IPuzzleSolver)Activator.CreateInstance(x.PuzzleType)!))
         .ToList();
-
-    static readonly string InputPathNotFoundError =
-        """
-            Input file does not found.
-            Please create inputs folder in Runner and place your input like this :
-            inputs/
-            ├── {0}/
-            │   ├── {1}.txt
-            """;
     internal static void RunPuzzle(int day, int year, InputMode mode = InputMode.Actual)
     {
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
             ?? throw new Exception("Puzzle does not found.");
 
+        string yearFolder = @$"inputs\{puzzle.Year}";
+        if (!Directory.Exists(yearFolder))
+            Directory.CreateDirectory(yearFolder);
+
         var inputFileName = $"day{puzzle.Day:00}";
         if (mode == InputMode.Sample)
             inputFileName += ".sample";
 
-        var inputPath = @$"inputs\{puzzle.Year}\{inputFileName}.txt";
+        var inputPath = @$"{yearFolder}\{inputFileName}.txt";
         if (!File.Exists(inputPath))
-            throw new Exception(string.Format(InputPathNotFoundError, year, inputFileName));
+            File.WriteAllText(inputPath, string.Empty);
 
         PrintTitle();
         var inputs = File.ReadAllLines(inputPath);
