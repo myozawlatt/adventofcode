@@ -2,7 +2,6 @@
 using System.Diagnostics;
 using System.Reflection;
 
-using SpectreColor = Spectre.Console.Color;
 namespace AOC.Runner;
 internal enum InputMode
 {
