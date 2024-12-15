@@ -4,10 +4,10 @@
 internal class Day11 : IPuzzleSolver
 {
     public object SolvePart1(string[] inputLines)
-        => CountSontes(inputLines, 25);
+        => CountStones(inputLines, 25);
     public object SolvePart2(string[] inputLines)
-        => CountSontes(inputLines, 75);
-    static long CountSontes(string[] inputLines, int totalBlinks)
+        => CountStones(inputLines, 75);
+    static long CountStones(string[] inputLines, int totalBlinks)
     {
         var stones = inputLines.Combine()
             .Split(' ')
