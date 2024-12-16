@@ -6,10 +6,10 @@ Console.InputEncoding = Encoding.UTF8;
 Console.Title = "Advent of Code 🎄";
 
 start:
-Console.Clear();
+HardCleanConsole();
 try
 {
-    PuzzleRunner.RunPuzzle(13, 2024, InputMode.Actual);
+    PuzzleRunner.RunPuzzle(14, 2024, InputMode.Actual);
 
     if (AnsiConsole.Confirm("Run again?"))
         goto start;
@@ -17,4 +17,10 @@ try
 catch (Exception ex)
 {
     AnsiConsole.MarkupLine($"[red]{ex.GetBaseException().Message}[/]");
+}
+
+static void HardCleanConsole()
+{
+    Console.Clear();
+    Console.WriteLine("\x1b[3J");
 }

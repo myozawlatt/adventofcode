@@ -27,12 +27,13 @@ public class PuzzleRunner
             x.Attr.Name,
             (IPuzzleSolver)Activator.CreateInstance(x.PuzzleType)!))
         .ToList();
+
     internal static void RunPuzzle(int day, int year, InputMode mode = InputMode.Actual)
     {
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
             ?? throw new Exception("Puzzle does not found.");
 
-        string yearFolder = @$"inputs\{puzzle.Year}";
+        string yearFolder = @$"{FilePaths.Inputs}\{puzzle.Year}";
         if (!Directory.Exists(yearFolder))
             Directory.CreateDirectory(yearFolder);
 
@@ -69,6 +70,10 @@ public class PuzzleRunner
 
         AnsiConsole.MarkupLine($"Part 1: {part1}    [green]({part1Elapsed.TotalMilliseconds} ms)[/]");
         AnsiConsole.MarkupLine($"Part 2: {part2}    [green]({part2Elapsed.TotalMilliseconds} ms)[/] \n");
+
+        var virtualization = @$"{FilePaths.Virtualizations}\{puzzle.Year}\day{puzzle.Day}.txt";
+        if (File.Exists(virtualization) && AnsiConsole.Confirm("This puzzle has a virtualization, do you want to see?"))
+            Console.Write(File.ReadAllText(virtualization));
 
         void PrintTitle()
             => AnsiConsole.MarkupLine($"[bold aquamarine1]{puzzle.Year}[/], [bold aquamarine1]Day {puzzle.Day}[/] : [bold olive]{puzzle.Name}[/] \n");
