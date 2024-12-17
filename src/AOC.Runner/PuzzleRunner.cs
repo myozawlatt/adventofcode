@@ -33,7 +33,11 @@ public class PuzzleRunner
         var puzzle = puzzles24.FirstOrDefault(x => x.Day == day && x.Year == year)
             ?? throw new Exception("Puzzle does not found.");
 
+<<<<<<< HEAD
         string yearFolder = $"{FilePaths.Inputs}/{puzzle.Year}";
+=======
+        string yearFolder = @$"{FilePaths.Inputs}\{puzzle.Year}";
+>>>>>>> 8f2c617069ae166b957d1467c5b0e727190c165b
         if (!Directory.Exists(yearFolder))
             Directory.CreateDirectory(yearFolder);
 
@@ -71,7 +75,11 @@ public class PuzzleRunner
         AnsiConsole.MarkupLine($"Part 1: {part1}    [green]({part1Elapsed.TotalMilliseconds} ms)[/]");
         AnsiConsole.MarkupLine($"Part 2: {part2}    [green]({part2Elapsed.TotalMilliseconds} ms)[/] \n");
 
+<<<<<<< HEAD
         var virtualization = $"{FilePaths.Virtualizations}/{puzzle.Year}/day{puzzle.Day}.txt";
+=======
+        var virtualization = @$"{FilePaths.Virtualizations}\{puzzle.Year}\day{puzzle.Day}.txt";
+>>>>>>> 8f2c617069ae166b957d1467c5b0e727190c165b
         if (File.Exists(virtualization) && AnsiConsole.Confirm("This puzzle has a virtualization, do you want to see?"))
             Console.Write(File.ReadAllText(virtualization));
 

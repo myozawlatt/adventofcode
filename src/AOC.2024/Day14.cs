@@ -62,6 +62,7 @@ internal class Day14 : IPuzzleSolver
                 seens.Add((nX, nY));
                 if (seens.Count == robots.Length)
                     goto exit;
+                }
             }
         }
 
