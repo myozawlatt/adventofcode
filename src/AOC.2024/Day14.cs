@@ -52,13 +52,13 @@ internal class Day14 : IPuzzleSolver
             seens = [];
             foreach (var (p, v) in robots)
             {
-                var nX = (p.X + v.X * totalSec) % WIDTH;
-                var nY = (p.Y + v.Y * totalSec) % HEIGHT;
+                var newX = (p.X + v.X * totalSec) % WIDTH;
+                var newY = (p.Y + v.Y * totalSec) % HEIGHT;
 
-                nX = nX < 0 ? nX + WIDTH : nX;
-                nY = nY < 0 ? nY + HEIGHT : nY;
+                newX = newX < 0 ? newX + WIDTH : newX;
+                newY = newY < 0 ? newY + HEIGHT : newY;
 
-                seens.Add((nX, nY));
+                seens.Add((newX, newY));
                 if (seens.Count == robots.Length)
                     goto exit;
             }
