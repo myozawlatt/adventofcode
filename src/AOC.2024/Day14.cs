@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices.Marshalling;
-using System.Text;
+﻿using System.Text;
 
 namespace AOC._2024;
 
@@ -62,7 +61,6 @@ internal class Day14 : IPuzzleSolver
                 seens.Add((nX, nY));
                 if (seens.Count == robots.Length)
                     goto exit;
-                }
             }
         }
 
