@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 
 namespace AOC.Common;
 public static class Extensions
@@ -11,6 +12,29 @@ public static class Extensions
                 map.Add(new(i, j), lines[i][j]);
 
         return map;
+    }
+    public static void Print(this Dictionary<Point, char> map, Action<string> writer = null!)
+    {
+        var last = map.Keys.Last();
+        var sb = new StringBuilder();
+        for (var x = 0; x <= last.X; x++)
+        {
+            for (var y = 0; y <= last.Y; y++)
+                sb.Append(map[new(x, y)]);
+
+            sb.AppendLine();
+        }
+        var mapStr = sb.ToString();
+        if (writer != null)
+        {
+            writer(mapStr);
+            writer(string.Empty);
+        }
+        else
+        {
+            Debug.WriteLine(mapStr);
+            Debug.WriteLine(string.Empty);
+        }
     }
     public static Dictionary<Point, T> CreateMap<T>(this string[] lines)
     {
